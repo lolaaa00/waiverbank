@@ -1,0 +1,21 @@
+{
+  "name": "waiverbank",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Contract-only semantic exception envelopes on GenLayer stable StudioNet",
+  "type": "module",
+  "config": {
+    "chainId": 61999,
+    "rpc": "https://studio.genlayer.com/api"
+  },
+  "scripts": {
+    "preflight": "python3 scripts/preflight.py",
+    "test:offline": "python3 -m unittest discover -s tests -p test_offline.py -v",
+    "test:direct": "python3 -m pytest -q tests/direct",
+    "hashes": "python3 scripts/source_hashes.py",
+    "deploy:bank": "node scripts/guarded-deploy.mjs contracts/WaiverBank.py",
+    "deploy:gate": "node scripts/guarded-deploy.mjs contracts/WaiverGate.py"
+  },
+  "devDependencies": { "genlayer": "0.39.1" },
+  "engines": { "node": ">=20" }
+}

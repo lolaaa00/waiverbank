@@ -1,0 +1,51 @@
+name: waiverbank-checks
+on:
+  push:
+  pull_request:
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline preflight
+        run: python3 scripts/preflight.py
+      - name: Compile source
+        run: python3 -m compileall -q contracts scripts tests
+      - name: Offline state-machine and adversarial regressions
+        run: python3 -m unittest discover -s tests -p test_offline.py -v
+      - name: Source hashes
+        run: python3 scripts/source_hashes.py
+  genvm:
+    runs-on: ubuntu-latest
+    env:
+      GENVM_VERSION: v0.2.12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned GenVM tooling
+        run: python3 -m pip install -r requirements-dev.txt
+      - name: GenVM lint and contract schema validation
+        run: |
+          genvm-lint check contracts/WaiverBank.py
+          genvm-lint check contracts/WaiverGate.py
+          genvm-lint schema contracts/WaiverBank.py
+          genvm-lint schema contracts/WaiverGate.py
+      - name: True GenLayer Direct Mode
+        run: python3 -m pytest -q tests/direct
+  cli-pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Assert exact CLI dependency
+        run: node -e "if(require('./node_modules/genlayer/package.json').version!=='0.39.1')process.exit(1)"
+      - run: node --check scripts/guarded-deploy.mjs
