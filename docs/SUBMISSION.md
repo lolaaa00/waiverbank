@@ -8,11 +8,11 @@ WaiverBank protects a policy from being silently eroded by individually approved
 
 ## Links and current status
 
-- GitHub: `https://github.com/lolaaa00/waiverbank` — unavailable as of 2026-10-23; Lola must create it before publication.
+- GitHub: `https://github.com/lolaaa00/waiverbank` — published under the verified `lolaaa00` account.
 - StudioNet chain: `61999`, RPC `https://studio.genlayer.com/api`.
 - Bank contract: not deployed; guarded attempt stopped at the authorized account's keystore password prompt before transaction submission.
 - Gate contract: not deployed; requires a finalized Bank address.
-- CI URL: unavailable until the target GitHub repository exists and a workflow actually runs.
+- CI: `https://github.com/lolaaa00/waiverbank/actions/runs/40010440911` — all offline, GenVM and CLI-pin jobs passed.
 - Source SHA-256 and receipt verification: `evidence/RELEASE_STATUS.md`.
 
 ## Reviewer differentiation

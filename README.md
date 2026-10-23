@@ -73,4 +73,4 @@ See [architecture](docs/ARCHITECTURE.md), [deployment and verification](docs/DEP
 
 This handoff contains source and tests, **not** a deployed contract. `evidence/RELEASE_STATUS.md` must be updated with actual tool results, finality receipts, deployed source matches and exact transaction links. Unverified boxes remain unchecked.
 
-**Proposed future repository:** `https://github.com/lolaaa00/waiverbank`. Do not push through `ometere123`; Lola will create and publish the repository herself.
+**Published repository:** `https://github.com/lolaaa00/waiverbank`. The audited release is owned by `lolaaa00`; do not mirror or publish it through `ometere123`.
