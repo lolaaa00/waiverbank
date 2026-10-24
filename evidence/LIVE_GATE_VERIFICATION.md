@@ -25,4 +25,4 @@ Every transaction above is FINALIZED. A correctly typed `uses(Address)` read ret
 
 The runner initially failed its final `uses` read because it supplied a string where GenVM expects an Address. This was a client encoding error: no consumer source correction or redeployment was required. Both demo scripts now encode address arguments with SDK `CalldataAddress`. The original JSONL log is preserved, and independent typed reads confirmed the final state.
 
-Still pending: an active, approved waiver for a different policy/action exercised directly through Gate, and an attacker-owned permissive-policy bypass attempt. Negative Bank queries do not substitute for those distinct live consumer scenarios.
+The later isolated test also proved rejection of an ACTIVE, approved attacker-owned policy waiver for the same action and actual beneficiary. See `LIVE_ADVERSARIAL_VERIFICATION.md` and transaction `0xfe78e4333fb98c40835aa611941efbed31c02b8ca309bb929388aaa373c63cc0`. A separate approved wrong-action waiver under the pinned security-v1 policy remains pending; creating that approval requires the original owner's local password.

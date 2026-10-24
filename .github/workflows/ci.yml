@@ -53,4 +53,5 @@ jobs:
         run: |
           node --check scripts/live-bank-demo.mjs
           node --check scripts/live-gate-demo.mjs
+          node --check scripts/live-adversarial-demo.mjs
           node --test tests/receipt-utils.test.mjs

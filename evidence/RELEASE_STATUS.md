@@ -26,10 +26,11 @@ Network: stable StudioNet / chain **61999** / RPC `https://studio.genlayer.com/a
 | Exact source-byte parity to deployed contract | PASS | `gen_getContractCode` base64 decoded to exactly 12,489 local bytes; SHA-256 `0f5d38165dec01c40901194404babafada5ece189b23e60123ef1e1c33ee4e0e` |
 | WaiverGate deployed + FINALIZED success | PASS | `0xd46816C640cc8389326Da03Da6b592f7717DAF69`; exact source parity and pinned constructor verified; see LIVE_GATE_VERIFICATION.md |
 | Owner, applicant, stranger real-wallet lifecycle | PARTIAL | Owner/applicant are one address; independent stranger approval rejected and settlement succeeded. All 12 recorded Bank transactions reconciled. See LIVE_BANK_VERIFICATION.md |
-| Live active + lifetime cap exhaustion | PENDING | Deployment exists; additional signed adversarial transactions have not been executed |
+| Live active + lifetime cap exhaustion | PASS | Isolated policy audit-104c6634: active rejection `0x9bb41ce528d2b11be36c9174aae8725786211ab5e7f43be7c78b8db1d71b5149`; settlement restored active=0 while lifetime=1; lifetime rejection `0xb8143ad430d179229a292bdad7c37e54966c08c0bc3abae631e8fd1f1ea3dfca`. See live-adversarial-demo.jsonl |
 | Live expiry and exactly-once settlement | PASS | Expired incident waiver no longer authorizes; first settlement SUCCESS, repeated settlement ERROR; lifetime expenditure retained. See LIVE_BANK_VERIFICATION.md |
 | Live consumer gating | PASS FOR RECORDED CASES | Authorized SUCCESS; wrong beneficiary, expired, denied, unknown ERROR; all FINALIZED. Typed usage read=1. See LIVE_GATE_VERIFICATION.md |
-| Live consumer approved wrong-policy/action bypass | PENDING | Bank negative queries verified; distinct approved adversarial consumer cases still required |
+| Live consumer approved wrong-policy bypass | PASS | ACTIVE attacker-owned waiver rejected by pinned Gate in FINALIZED transaction `0xfe78e4333fb98c40835aa611941efbed31c02b8ca309bb929388aaa373c63cc0`; see LIVE_ADVERSARIAL_VERIFICATION.md |
+| Live consumer approved wrong-action under security-v1 | PENDING | Bank negative action query and local tests verified; approved distinct-action consumer case requires original owner signature |
 | GitHub Actions green after publishing | PASS | Run `40010440911`: offline, GenVM and CLI-pin jobs all passed — `https://github.com/lolaaa00/waiverbank/actions/runs/40010440911` |
 | Reviewer-ready README and honest proofs | CONDITIONALLY COMPLETE | Local documentation updated; live evidence remains blocked |
 | npm dependency audit | OPEN RISK | 6 advisories in mandated CLI dev tree (2 critical, 4 moderate); remediation would change required CLI pin |
