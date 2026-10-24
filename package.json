@@ -15,6 +15,7 @@
     "hashes": "python3 scripts/source_hashes.py",
     "demo:bank": "node scripts/live-bank-demo.mjs",
     "demo:gate": "node scripts/live-gate-demo.mjs",
+    "demo:action": "node scripts/live-action-demo.mjs",
     "deploy:bank": "node scripts/guarded-deploy.mjs contracts/WaiverBank.py",
     "deploy:gate": "node scripts/guarded-deploy.mjs contracts/WaiverGate.py"
   },
