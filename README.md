@@ -71,6 +71,11 @@ See [architecture](docs/ARCHITECTURE.md), [deployment and verification](docs/DEP
 
 ## Evidence status
 
-This handoff contains source and tests, **not** a deployed contract. `evidence/RELEASE_STATUS.md` must be updated with actual tool results, finality receipts, deployed source matches and exact transaction links. Unverified boxes remain unchecked.
+Both contracts are deployed on stable StudioNet, finalized successfully, and byte-for-byte matched to these sources:
+
+- [WaiverBank](https://explorer-studio.genlayer.com/address/0x65265EF0b9687c55d5dEBc97b2aF02BD58D7A0A6)
+- [WaiverGate](https://explorer-studio.genlayer.com/address/0xd46816C640cc8389326Da03Da6b592f7717DAF69)
+
+Live evidence includes consensus-classified NARROW approval, OUTSIDE denial, non-owner rejection, expiry settlement and duplicate-settlement rejection. The consumer accepted an authorized beneficiary and rejected wrong-beneficiary, expired, denied and unknown waivers. See [Bank receipts](evidence/LIVE_BANK_VERIFICATION.md), [Gate receipts](evidence/LIVE_GATE_VERIFICATION.md), and [remaining release gates](evidence/RELEASE_STATUS.md). Release verification remains incomplete for live budget exhaustion and distinct approved-policy/action substitution attacks.
 
 **Published repository:** `https://github.com/lolaaa00/waiverbank`. The audited release is owned by `lolaaa00`; do not mirror or publish it through `ometere123`.

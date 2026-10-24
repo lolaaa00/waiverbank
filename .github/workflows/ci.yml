@@ -49,3 +49,8 @@ jobs:
       - name: Assert exact CLI dependency
         run: node -e "if(require('./node_modules/genlayer/package.json').version!=='0.39.1')process.exit(1)"
       - run: node --check scripts/guarded-deploy.mjs
+      - name: Verify live-runner syntax and receipt regressions
+        run: |
+          node --check scripts/live-bank-demo.mjs
+          node --check scripts/live-gate-demo.mjs
+          node --test tests/receipt-utils.test.mjs

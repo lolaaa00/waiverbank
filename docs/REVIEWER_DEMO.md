@@ -1,5 +1,9 @@
 # Reviewer demonstration (contract-only)
 
+## Recorded StudioNet results
+
+Finalized Bank and consumer receipt hashes are in `evidence/LIVE_BANK_VERIFICATION.md` and `evidence/LIVE_GATE_VERIFICATION.md`. The Bank approved NARROW, denied the prohibited PII request as OUTSIDE, rejected a non-owner, settled expiry once and rejected repeated settlement. Gate accepted the approved beneficiary and rejected wrong-beneficiary, expired, denied and unknown waivers; its counter read returned 1. Exact source parity is verified for both deployments. The walkthrough below also includes planned budget/policy-shopping cases that remain pending live execution; do not present those expectations as receipts.
+
 Goal: show exception erosion prevention with one frozen policy and a consumer that cannot be fooled by a policy created by an attacker.
 
 ## Example charter

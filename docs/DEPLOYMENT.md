@@ -1,5 +1,14 @@
 # Deployment and final verification guide
 
+## Verified Bank deployment
+
+Stable StudioNet Bank: `0x65265EF0b9687c55d5dEBc97b2aF02BD58D7A0A6`.
+Deployment transaction: `0x57e9fc435634b201daf161c0383bf18c61f3292b46c5e6905868999deeeadb72`.
+The explorer confirmed FINALIZED, GenVM SUCCESS and consensus Accepted. Exact RPC source bytes match local `contracts/WaiverBank.py` (12,489 bytes), SHA-256 `0f5d38165dec01c40901194404babafada5ece189b23e60123ef1e1c33ee4e0e`.
+
+The owner is `0x577065eDBEEba97D811F0135838Aa641F24D13bF`, account `waiverbank-deployer`.
+The CLI's OS keychain is unavailable on this machine. Run `npm run demo:bank` in a local interactive terminal to enter the keystore password once. It remains in process memory, and only public transaction evidence is written to `evidence/live-bank-demo.jsonl`. The runner explicitly waits for FINALIZED and verifies execution success or failure. It refuses to rerun when that log exists: reconcile submitted hashes before resuming an interrupted run. This runner exercises the Bank; Gate deployment must still use the supplied guarded deployment command. Live demo completion is pending until receipts are inspected.
+
 Only the policy owner or Lola's authorized deploying account should publish this. Never add a private key or seed phrase to the repository, prompt, screenshot or ZIP.
 
 ## Step 1: verify the source
