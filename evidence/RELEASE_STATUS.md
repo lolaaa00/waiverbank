@@ -2,7 +2,7 @@
 
 Date: 2026-10-24 (Africa/Lagos)
 
-Verdict: **BLOCKED — mandatory live adversarial cases remain unresolved.** Both deployments and the documented lifecycle/consumer cases are verified. Remaining signed transactions need local keystore access; the machine's CLI keychain integration is unavailable.
+Verdict: **CONDITIONALLY READY — verified deployment and live demonstration, with disclosed limitations.** Both source-matched deployments and the documented lifecycle, budget and consumer attack cases are verified. The final approved wrong-action Gate rejection is complete. The security-v1 demo uses the owner as its applicant, with independent stranger and attacker identities for negative cases. Evidence is self-asserted, common-mode model error remains possible, and the required CLI dependency tree has disclosed advisories. These are limitations, not claims of production security.
 
 GitHub repository: `https://github.com/lolaaa00/waiverbank` — verified and published under `lolaaa00`
 
@@ -30,9 +30,9 @@ Network: stable StudioNet / chain **61999** / RPC `https://studio.genlayer.com/a
 | Live expiry and exactly-once settlement | PASS | Expired incident waiver no longer authorizes; first settlement SUCCESS, repeated settlement ERROR; lifetime expenditure retained. See LIVE_BANK_VERIFICATION.md |
 | Live consumer gating | PASS FOR RECORDED CASES | Authorized SUCCESS; wrong beneficiary, expired, denied, unknown ERROR; all FINALIZED. Typed usage read=1. See LIVE_GATE_VERIFICATION.md |
 | Live consumer approved wrong-policy bypass | PASS | ACTIVE attacker-owned waiver rejected by pinned Gate in FINALIZED transaction `0xfe78e4333fb98c40835aa611941efbed31c02b8ca309bb929388aaa373c63cc0`; see LIVE_ADVERSARIAL_VERIFICATION.md |
-| Live consumer approved wrong-action under security-v1 | PENDING | Bank negative action query and local tests verified; approved distinct-action consumer case requires original owner signature |
+| Live consumer approved wrong-action under security-v1 | PASS | Active HOTFIX_INC43 waiver approved; Bank authorized that action and rejected HOTFIX_INC42; Gate rejection FINALIZED in `0x26d51d2549001983344807ba9af06d7b2f094b73d6b16b66eef19bb7640b03b7`; usage unchanged at 1. See live-action-demo.jsonl |
 | GitHub Actions green after publishing | PASS | Run `40010440911`: offline, GenVM and CLI-pin jobs all passed — `https://github.com/lolaaa00/waiverbank/actions/runs/40010440911` |
-| Reviewer-ready README and honest proofs | CONDITIONALLY COMPLETE | Local documentation updated; live evidence remains blocked |
+| Reviewer-ready README and honest proofs | COMPLETE WITH CAVEATS | Public receipts, source parity, tests and limitations documented |
 | npm dependency audit | OPEN RISK | 6 advisories in mandated CLI dev tree (2 critical, 4 moderate); remediation would change required CLI pin |
 
 Do not substitute an `ACCEPTED` hash, a static mock, guessed contract address or screenshot for a finalized execution receipt.

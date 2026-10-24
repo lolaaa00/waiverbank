@@ -25,4 +25,15 @@ Every transaction above is FINALIZED. A correctly typed `uses(Address)` read ret
 
 The runner initially failed its final `uses` read because it supplied a string where GenVM expects an Address. This was a client encoding error: no consumer source correction or redeployment was required. Both demo scripts now encode address arguments with SDK `CalldataAddress`. The original JSONL log is preserved, and independent typed reads confirmed the final state.
 
-The later isolated test also proved rejection of an ACTIVE, approved attacker-owned policy waiver for the same action and actual beneficiary. See `LIVE_ADVERSARIAL_VERIFICATION.md` and transaction `0xfe78e4333fb98c40835aa611941efbed31c02b8ca309bb929388aaa373c63cc0`. A separate approved wrong-action waiver under the pinned security-v1 policy remains pending; creating that approval requires the original owner's local password.
+The later isolated test also proved rejection of an ACTIVE, approved attacker-owned policy waiver for the same action and actual beneficiary. See `LIVE_ADVERSARIAL_VERIFICATION.md` and transaction `0xfe78e4333fb98c40835aa611941efbed31c02b8ca309bb929388aaa373c63cc0`.
+
+## Approved wrong-action waiver under the pinned policy
+
+Independently verified on 2026-10-24. All four transactions below are FINALIZED:
+
+- Request HOTFIX_INC43 under security-v1: `0x4065b49079feba2769ce62d4c6140cf1f315e277cc11251a117d2f94f810d154` — SUCCESS.
+- Assessment: `0x8507d237a9eb7972bd6c14d2a98753e114da55ff00009686a6b6c23d8a0e5e72` — SUCCESS, NARROW.
+- Owner approval: `0xa9ec5a70c9f7e6800ee6dee4374f418ba4efc1418f535043b19396e78fb3175f` — SUCCESS.
+- Gate call: `0x26d51d2549001983344807ba9af06d7b2f094b73d6b16b66eef19bb7640b03b7` — ERROR, rollback `no effective waiver for caller/action`.
+
+Before the Gate call, the Bank returned true for HOTFIX_INC43 and false for the pinned HOTFIX_INC42, with the correct beneficiary and policy. Waiver status was ACTIVE; Gate uses read 1 before and after. Full public evidence is in `live-action-demo.jsonl`.
